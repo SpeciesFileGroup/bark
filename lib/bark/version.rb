@@ -1,3 +1,3 @@
-module Bark
+class Bark
   VERSION = "0.0.1"
 end

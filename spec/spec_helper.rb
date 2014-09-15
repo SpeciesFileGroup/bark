@@ -3,6 +3,7 @@
 
 require 'bark' 
 require 'awesome_print'
+require 'byebug'
 
 RSpec.configure do |config|
 
