@@ -23,7 +23,7 @@ describe Bark::Request::Studies do
 
   it 'returns a list of studies' do
     a = Bark::Request::Studies.new(method: :find_studies)
-    expect(Bark::Response(request: a).json).to eq([])
+    expect(Bark::Response.new(request: a).json).to eq([])
   end
 
 
