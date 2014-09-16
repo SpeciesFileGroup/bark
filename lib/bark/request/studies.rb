@@ -3,7 +3,7 @@ class Bark::Request::Studies < Bark::Request
     API_VERSION = 'v2'  
     INTERFACE = 'studies'
     FORMAT = 'json'
-    SEARCH_BASE = [Bark::Request::BASE_URL, INTERFACE, API_VERSION].join("/") 
+    SEARCH_BASE = [Bark::Request::BASE_URL, API_VERSION, INTERFACE].join("/") 
 
     METHODS = { 
       'studies/properties' => %w{},
@@ -48,7 +48,7 @@ class Bark::Request::Studies < Bark::Request
 
     # TODO: this doesn't feel right
     def build_url
-     @search_url = SEARCH_BASE +  '/' + @method.to_s  + send("#{@method}_url")
+      @search_url = SEARCH_BASE +  '/' + @method.to_s  + send("#{@method}_url")
     end
 
     def study_url
