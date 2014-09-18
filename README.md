@@ -37,7 +37,11 @@ Documentation is presently being autogenerate at [RubyDoc.info][1]
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-[1]: http://rubydoc.info/github/SpeciesFileGroup/taxonworks/frames
+## Licence
+
+Bark is open source, the exact licence TBD shortly.
+
+[1]: http://rubydoc.info/github/SpeciesFileGroup/bark/frames
 [2]: https://github.com/OpenTreeOfLife/hackathon  
 [3]: https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs
 [4]: https://github.com/fmichonneau/rotl
