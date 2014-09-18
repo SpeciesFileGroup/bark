@@ -51,9 +51,13 @@ def run_tests(request_class, tests)
               expect(sub_response).to eq(value), msg
             end
           end
-
+        when 'contains_error'
+          specify "#{k}" do 
+            msg = t.tests[k]
+            expect(response.json['error']).to be_truthy, msg 
+          end
         else
-          pending "Test engine for [ #{k} ] not yet finished."
+          pending "Test engine for [ #{k} ] not yet finished"
         end
       end
     end

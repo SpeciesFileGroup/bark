@@ -77,7 +77,7 @@ class Bark::Request::Studies < Bark::Request
     end
 
     def get_study_url
-      '/study/' + @params[:study_id]
+      '/study/' + @params[:study_id].to_s
     end 
 
   end

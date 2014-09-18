@@ -27,7 +27,7 @@ describe Bark::Request::Studies do
         expect(a.uri.to_s).to eq('http://devapi.opentreeoflife.org/v2/studies/find_studies')
       end
 
-      specify 'for matched_studies' do
+      specify 'for find_trees' do
         a = Bark::Request::Studies.new(method: :studies_find_trees)
         expect(a.uri.to_s).to eq('http://devapi.opentreeoflife.org/v2/studies/find_trees')
       end
@@ -38,14 +38,12 @@ describe Bark::Request::Studies do
         expect(a.uri.to_s).to eq("http://devapi.opentreeoflife.org/v2/study/#{id}")
       end
 
-      specify 'for study' do
+      specify 'for study_tree' do
         id = 'pg_1144' 
         tree = 'tree2324'
         a = Bark::Request::Studies.new(method: :get_study_tree, params: {study_id: id, tree_id: tree })
         expect(a.uri.to_s).to eq("http://devapi.opentreeoflife.org/v2/study/#{id}/tree/#{tree}")
       end
- 
-
     end
 
     context 'payload' do
