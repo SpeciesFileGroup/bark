@@ -10,8 +10,13 @@ require "net/http"
 
 require_relative 'bark/request'
 require_relative 'bark/request/studies'
+require_relative 'bark/request/tree_of_life'
 require_relative 'bark/response'
 
 class Bark
   # Code goes here...
+end
+
+class Bark::Error < StandardError
+
 end

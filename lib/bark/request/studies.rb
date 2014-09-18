@@ -1,22 +1,27 @@
 class Bark::Request::Studies < Bark::Request
 
     API_VERSION = 'v2'  
-    INTERFACE = 'studies'
     FORMAT = 'json'
-    SEARCH_BASE = [Bark::Request::BASE_URL, API_VERSION, INTERFACE].join("/") 
+    SEARCH_BASE = [Bark::Request::BASE_URL, API_VERSION].join("/") 
 
+    # Studies methods are slightly different because of the API differences
     METHODS = { 
-      'studies/properties' => %w{},
-      find_studies: %w{},
-      study: %w{study_id},
-      find_studies: %w{}, 
+      studies_find_studies: %i{property value exact verbose},
+      studies_find_trees: %i{property value exact verbose},
+      studies_properties: %i{}, 
+      get_study: %i{study_id},
+      get_study_tree: %i{study_id tree_id}, 
     }
 
     REQUIRED_PARAMS = {
-      'studyID' => [:study],
+      study_id: %i{study get_study_tree},
+      tree_id:  %i{get_study_tree},
+      property: %i{studies_find_trees},
+      value:  %i{studies_find_trees}
     }
 
     mrp = {}
+    
     REQUIRED_PARAMS.each do |k,v|
       v.each do |m|
         mrp[m].push(k) if mrp[m] 
@@ -26,16 +31,16 @@ class Bark::Request::Studies < Bark::Request
 
     METHODS_REQUIRED_PARAMS = mrp
 
-    attr_accessor :params, :method, :format
-    attr_reader :search_url
+    # Only studies takes a method parameter
+    attr_accessor :method
 
-    def initialize( method: :study_list, params: {})
+    def initialize(method: :study_list, params: {})
       assign_options(method: method, params: params)
-      build_url if valid?
+      build_uri if valid?
     end
 
     def assign_options(method: method, params: params)
-      @method = method
+      @method = method.to_sym
       @params = params
     end
 
@@ -44,28 +49,35 @@ class Bark::Request::Studies < Bark::Request
       !@method.nil? && params_are_supported? && has_required_params?
     end
 
+    def json_payload
+      JSON.generate(@params)
+    end
+
     private 
 
     # TODO: this doesn't feel right
-    def build_url
-      @search_url = SEARCH_BASE +  '/' + @method.to_s  + send("#{@method}_url")
+    def build_uri
+      @uri = URI( SEARCH_BASE +  send("#{@method}_url") )
     end
 
-    def study_url
-      '/' + (@params[:study_id].nil? ? nil : "/#{@params[:study_id]}").to_s
+    def studies_find_studies_url
+     '/studies/find_studies' 
     end
 
-    def find_studies_url 
-      ''
+    def studies_find_trees_url
+     '/studies/find_trees' 
     end
 
-    def find_trees_url
+    def studies_properties_url
+     '/studies/properties' 
     end
 
-    # assume everything has a properties url
-    
-    def tree_url
+    def get_study_tree_url
+      "/study/#{@params[:study_id]}/tree/#{@params[:tree_id]}"
+    end
 
+    def get_study_url
+      '/study/' + @params[:study_id]
     end 
 
   end

@@ -1,22 +1,39 @@
-class Bark
+class Bark 
   class Response
+    
+    # All OT responses are in json format.  The json is stored here as a hash (dictionary).
     attr_reader :json
 
     def initialize(request: {}) 
-      # raise if opts[:request].nil? || opts[:request].class != Bark::Request
-      # python ete
+      raise 'No request passed' if request == {} or request.nil?
+      # warn Bark::Error, 'Warning request is not valid, making it anyway.' if !request.valid?
 
       @json = {}
 
-      #      request.uri =  URI('http://devapi.opentreeoflife.org/v2/taxonomy/about')
-      req = Net::HTTP::Post.new(request.uri)
-      # req.set_form_data('from' => '2005-01-01', 'to' => '2005-03-31')
-
+      req = Net::HTTP::Post.new(request.uri, initheader = {'Content-Type' =>'application/json'})
       res = Net::HTTP.start(request.uri.hostname, request.uri.port) do |http|
+        req.body = request.json_payload
         http.request(req)
       end
 
-      @json = JSON.parse(res.body) # Net::HTTP.post(URI.parse(opts[:request].search_url)).body)
+      begin
+        @json = JSON.parse(res.body) 
+      rescue JSON::ParserError => e
+        puts e.message
+        ap request
+      end
+    end
+
+    def request_succeeded?
+      !@json['exception'] && !@json['error']
+    end
+
+    def request_failure_message
+      @json['message']
+    end
+
+    def result
+      @json
     end
 
   end
