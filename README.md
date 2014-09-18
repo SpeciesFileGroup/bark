@@ -1,7 +1,7 @@
 bark
 ====
 
-A Ruby Gem wrapper on the Open Tree of Life API.
+Bark is a Ruby Gem wrapper on the [Open Tree of Life API][3]. It was written over the course of the [OpenTree hackathon][2]  At present it seeks to provide a simple wrapper over all of the API calls available, returning a native json object for each response. It also acts as a sanity checker on the API calls themselves, running a suite of unity tests shared by related wrappers in [Python][5] and [R][4].
 
 ## Installation
 
@@ -21,7 +21,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Bark is broken down into Request and Response objects.  These are additionally wrapped with a set of helper methods that map 1:1 with the [Open Tree URLs][3].  Wrapping method names follow a convention adopted by the related Python and R frameworks, it is available [TODO: here].
+
+Example usages are present available in the specs and will appear here shortly.
+
+## Documentation
+
+Documentation is presently being autogenerate at [RubyDoc.info][1]
 
 ## Contributing
 
@@ -31,3 +37,8 @@ TODO: Write usage instructions here
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+[1]: http://rubydoc.info/github/SpeciesFileGroup/taxonworks/frames
+[2]: https://github.com/OpenTreeOfLife/hackathon  
+[3]: https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs
+[4]: https://github.com/fmichonneau/rotl
+[5]: https://github.com/OpenTreeOfLife/opentree-interfaces
