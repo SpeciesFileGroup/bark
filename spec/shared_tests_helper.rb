@@ -1,29 +1,18 @@
-# This module faciliates the use of shared tests used in R, Python, and here.  
-# Those tests are provided in json format here https://github.com/OpenTreeOfLife/opentree-interfaces/tree/master/python/test
+#  This module faciliates the use of shared tests used in R, Python, and herein. 
 #
-# {
-#     "test_mrca_normal_input": {
-#         "test_method": "tree_of_life_mrca",
-#         "test_input": [412129, 536234],
-#         "test_output": {
-#              "of_type": "dict",
-#              "passes": "'nearest_taxon_mrca_rank' == 'superorder'",
-#              "contains": "nearest_taxon_mrca_ott_id"}
-#          }
-# }
-#
+#  See https://github.com/OpenTreeOfLife/shared-api-tests  
 #
 module SharedTestsHelper
 
-
+  # Instances are used to translate string-keyed hashes to symbolized keys.
   class SymbolizableHash < Hash
     include Hashie::Extensions::SymbolizeKeys
   end
 
-  # The location of the .json files
-  TEST_SOURCE_BASE = 'https://raw.githubusercontent.com/OpenTreeOfLife/opentree-interfaces/master/python/test/'
+  # The location/ of the .json files
+  TEST_SOURCE_BASE = ' https://raw.githubusercontent.com/OpenTreeOfLife/shared-api-tests/master/'
 
-  # Bade filenames for each test containg .json file
+  # Base filenames to test with.
   TEST_FILES = %w{
     graph_of_life
     studies
@@ -32,22 +21,18 @@ module SharedTestsHelper
     tree_of_life
   } 
 
-  shared_tests = {} 
-
-  # Each test is instantiated as an OtTest.  
-  # This is used internally only in the testing framework.
+  # Each set of tests is instantiated as an OtTest.  
   class OtTest
-    
     # The name of the test, displayed in the specification
     attr_accessor :name
 
-    # The API wrapper method name to to call
+    # The API wrapper method name to to call. 
     attr_accessor :method
 
     # A Hash of input values to be delivered in the JSON payload
     attr_accessor :input
 
-    # A Hash of specifications, by keyword, as provided in 'tests'
+    # A Hash of specifications, by keyword, i.e. the value of "tests"
     #
     #   "tests": {
     #        "of_type": 
@@ -63,14 +48,17 @@ module SharedTestsHelper
     #
     attr_accessor :tests
 
+    # Translates specified types to Ruby types
     RESULT_TYPE_CLASSES = {
       'dict' => Hash
     }
- 
+
+    # Getter translation of the method attribute.  
     def method
       @method.to_sym
     end
 
+    # Translate the json result type provided in the json specification to a native Ruby value.
     def result_type
       if t = @tests['of_type']
         RESULT_TYPE_CLASSES[t.first]
@@ -121,11 +109,7 @@ module SharedTestsHelper
     puts "\n\n!! Warning, unable to build shared tests, some JSON doesn't parse."
   end
 
-  # An Array of OtTest objects
+  # The Array of OtTest objects
   SHARED_TESTS = shared_tests
 
-  def self.of_type_test(response, ot_test_instance, message)
-    expect(response.class).to eq(ot_test_instance.result_type, message)
-  end
-  
 end

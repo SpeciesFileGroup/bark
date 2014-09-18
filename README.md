@@ -44,7 +44,7 @@ Documentation is presently being autogenerate at [RubyDoc.info][1]
 
 ## Licence
 
-Bark is open source, the exact licence TBD shortly.
+Bark is open source, it is available under the BSD licence.
 
 [1]: http://rubydoc.info/github/SpeciesFileGroup/bark/frames
 [2]: https://github.com/OpenTreeOfLife/hackathon  

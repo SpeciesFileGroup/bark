@@ -5,19 +5,29 @@ class Bark
     attr_reader :json
 
     def initialize(request: {}) 
-      raise 'No request passed' if request == {} or request.nil?
+      raise 'No request passed' if request == {} || request.nil?
       # warn Bark::Error, 'Warning request is not valid, making it anyway.' if !request.valid?
 
       @json = {}
 
-      req = Net::HTTP::Post.new(request.uri, initheader = {'Content-Type' =>'application/json'})
+      if [:get_study, :get_study_tree ].include?( request.method  )
+        req = Net::HTTP::Get.new(request.uri)
+      else
+        req = Net::HTTP::Post.new(request.uri, initheader = {'Content-Type' =>'application/json'})
+      end 
+      
       res = Net::HTTP.start(request.uri.hostname, request.uri.port) do |http|
         req.body = request.json_payload
         http.request(req)
       end
 
+      parse_json(res.body)
+   end
+
+    # Parse the json, and store it in @json.
+    def parse_json(string)
       begin
-        @json = JSON.parse(res.body) 
+        @json = JSON.parse(string) 
       rescue JSON::ParserError => e
         puts e.message
         ap request

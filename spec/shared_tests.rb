@@ -14,10 +14,10 @@ def run_tests(request_class, tests)
           end
         when 'equals'
           t.tests[k].each_with_index do |subtest, i|
-            key = t.tests[k][0]
-            value = t.tests[k][1] 
-            msg = t.tests[k][2]
-            specify "#{i}- #{k} #{key}" do 
+            key = subtest[0][0]
+            value = subtest[0][1] 
+            msg = subtest[1]
+            specify "#{k} #{key}: #{value} (#{i})" do 
               expect(response.json[key]).to eq(value), msg
             end
           end
@@ -25,13 +25,35 @@ def run_tests(request_class, tests)
           t.tests[k].each_with_index do |subtest, i|
             key = subtest[0]
             msg = subtest[1]
-            specify "#{i}- #{k} #{key}" do 
+            specify "#{k} #{key} (#{i})" do 
               expect(response.json[key]).to be_truthy
+            end
+          end
+        when 'length_greater_than'
+          t.tests[k].each_with_index do |subtest, i|
+            key = subtest[0][0]
+            len = subtest[0][1].to_i
+            msg = subtest[1]
+            specify "#{k} #{key}: #{len} (#{i})" do 
+              expect(response.json[key].length > len ).to be(true), msg
+            end
+          end
+        when 'deep_equals' 
+          t.tests[k].each_with_index do |subtest, i|
+            sub_response = response.json
+            # could eval a string sensu python too
+            subtest[0][0].each do |k|
+              sub_response = sub_response[k]
+            end
+            value = subtest[0][1]
+            msg = subtest[1]
+            specify "#{k} #{subtest[0][0]}: #{value} (#{i})" do 
+              expect(sub_response).to eq(value), msg
             end
           end
 
         else
-          pending "Test engine for #{k} not yet finished."
+          pending "Test engine for [ #{k} ] not yet finished."
         end
       end
     end

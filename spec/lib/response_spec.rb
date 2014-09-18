@@ -10,14 +10,12 @@ describe Bark::Response do
     allow(r).to receive(:uri).and_return( uri ) 
     allow(r).to receive(:valid?).and_return(true)
     allow(r).to receive(:json_payload).and_return({}.to_json)
+    allow(r).to receive(:method).and_return(:studies_properties)
     r
   }
   
   specify 'a good request returns' do
     expect(Bark::Response.new(request: request)).to be_truthy
-  end
-
-  specify 'a bad request raises' do
   end
 
 end 

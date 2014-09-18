@@ -9,8 +9,8 @@ class Bark::Request::Studies < Bark::Request
       studies_find_studies: %i{property value exact verbose},
       studies_find_trees: %i{property value exact verbose},
       studies_properties: %i{}, 
-      get_study: %i{study_id},
-      get_study_tree: %i{study_id tree_id}, 
+      get_study: %i{study_id},               # GET, not post
+      get_study_tree: %i{study_id tree_id},  # GET, not post
     }
 
     REQUIRED_PARAMS = {
