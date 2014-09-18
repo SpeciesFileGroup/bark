@@ -37,9 +37,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_print
+  awesome_print (~> 1.2)
   bark!
   bundler (~> 1.5)
   byebug (~> 3.4)
-  rake
+  rake (~> 10.3)
   rspec (~> 3.1)
