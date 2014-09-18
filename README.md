@@ -4,11 +4,13 @@ bark
 [![Continuous Integration Status][6]][7]
 [![Dependency Status][8]][9]
 
-Bark is a Ruby Gem wrapper on the [Open Tree of Life API][3]. It was written over the course of the [OpenTree hackathon][2]  At present it seeks to provide a simple wrapper over all of the API calls available, returning a native json object for each response. It also acts as a sanity checker on the API calls themselves, running a suite of unity tests shared by related wrappers in [Python][5] and [R][4].
+Bark is a Ruby Gem wrapper on the [Open Tree of Life API][3]. It was written over the course of the [OpenTree hackathon][2]  At present it seeks to provide a simple wrapper over all of the API calls available, returning a native json object for each response. It also acts as a sanity checker on the API calls themselves, running a suite of unit tests shared by related wrappers in [Python][5] and [R][4].
 
 ## Installation
 
 _Bark has not yet been published to a gem repo!_
+
+Bark is written targetting Ruby 2.1.x.
 
 Add this line to your application's Gemfile:
 

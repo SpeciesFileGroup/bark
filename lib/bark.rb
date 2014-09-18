@@ -11,6 +11,10 @@ require "net/http"
 require_relative 'bark/request'
 require_relative 'bark/request/studies'
 require_relative 'bark/request/tree_of_life'
+require_relative 'bark/request/graph_of_life'
+require_relative 'bark/request/tnrs'
+require_relative 'bark/request/taxonomy'
+
 require_relative 'bark/response'
 
 class Bark

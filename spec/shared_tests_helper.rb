@@ -23,7 +23,7 @@ module SharedTestsHelper
   # The location of the .json files
   TEST_SOURCE_BASE = 'https://raw.githubusercontent.com/OpenTreeOfLife/opentree-interfaces/master/python/test/'
 
-  # Root filenames for each test containg file
+  # Bade filenames for each test containg .json file
   TEST_FILES = %w{
     graph_of_life
     studies
@@ -101,7 +101,6 @@ module SharedTestsHelper
     o.tests = attributes['tests']
 
     o
-    # do more stuff here
   end
 
   shared_tests = {} 
