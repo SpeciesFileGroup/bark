@@ -1,4 +1,11 @@
 # coding: utf-8
+# 
+# Notes for deploying
+# gem build bark.gemspec
+# gem install ./bark-0.0.1.gem
+# gem yank bark -v 0.0.1
+# gem push bark-0.0.1.gem
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'bark/version'
