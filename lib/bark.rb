@@ -29,12 +29,17 @@ class Bark
     return false
   end
 
+  # TODO: this needs more stress testing
   def self.method_missing(meth, *args, &block)
     if klass = self.request_class(meth)
-       params = args
-       params = {} if params == []
-       request = klass.new(method: meth, params: params, &block)
-       Bark::Response.new(request: request).result
+      if args[0].nil?
+        params = {}
+      else
+        params = args[0][:params]
+      end
+      params = {} if params.nil?
+      request = klass.new(method: meth, params: params, &block)
+      Bark::Response.new(request: request).result
     else
       super
     end

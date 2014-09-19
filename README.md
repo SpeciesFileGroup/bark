@@ -8,8 +8,6 @@ Bark is a Ruby Gem wrapper on the [Open Tree of Life API][3]. It was written ove
 
 ## Installation
 
-_Bark has not yet been published to a gem repo!_
-
 Bark is written targetting Ruby 2.1.x.
 
 Add this line to your application's Gemfile:
@@ -26,9 +24,27 @@ Or install it yourself as:
 
 ## Usage
 
-Bark is broken down into Request and Response objects.  These are additionally wrapped with a set of helper methods that map 1:1 with the [Open Tree URLs][3].  Wrapping method names follow a convention adopted by the related Python and R frameworks, it is available [TODO: here].
+Bark is broken down into Request and Response objects.  These are additionally wrapped with a set of helper methods that map 1:1 with the [Open Tree URLs][3].  Binding method names [follow a convention][] adopted by the related Python and R frameworks.
 
-Example usages are present available in the specs and will appear here shortly.
+Very simply:
+
+```
+  require 'bark'
+```
+
+Then
+
+```ruby
+  Bark.tol_about  # => { big hash }
+```
+
+Pass parameters like so:
+
+```ruby
+  Bark.get_study(params: {:study_id => '2113'})   # => json response
+```
+
+Parameter keys can be symbols or strings.
 
 ## Documentation
 
@@ -55,6 +71,6 @@ Bark is open source, it is available under the BSD licence.
 [7]: http://travis-ci.org/SpeciesFileGroup/bark?branch=master
 [8]: https://gemnasium.com/SpeciesFileGroup/bark.png?branch=master
 [9]: https://gemnasium.com/SpeciesFileGroup/bark?branch=master
-
+[10]: https://github.com/OpenTreeOfLife/opentree/wiki/Libraries-for-working-with-opentree-in-various-languages-%28service-bindings-and-wrappers,-etc.%29
 
 

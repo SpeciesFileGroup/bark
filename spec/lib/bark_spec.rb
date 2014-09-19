@@ -47,6 +47,15 @@ describe Bark do
       specify 'methods with determinable request classes do not raise' do
         expect {Bark.get_study()}.to_not raise_error
       end
+
+      specify 'methods with params do not raise' do
+        expect { Bark.get_study(params: {'study_id' => 'px3454'})}.to_not raise_error
+      end
+
+      specify 'a GET example returns' do
+        expect( Bark.get_study(params: {:study_id => '2113'})['error']).to be_falsey
+      end
+
     end
   end
 

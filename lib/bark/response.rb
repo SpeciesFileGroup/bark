@@ -10,6 +10,7 @@ class Bark
 
       @json = {}
 
+      
       if [:get_study, :get_study_tree ].include?( request.method  )
         req = Net::HTTP::Get.new(request.uri)
       else
