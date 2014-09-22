@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# Meta-tests
+# Meta-tests for sanity
 describe SharedTestsHelper do
 
   specify 'are instantiated from a URL' do

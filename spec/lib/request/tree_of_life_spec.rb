@@ -12,7 +12,7 @@ describe Bark::Request::TreeOfLife do
     end
 
     specify 'reference methods by ot API wrapper shared name in METHODS' do 
-      expect( Bark::Request::TreeOfLife::METHODS.keys.sort).to eq(%i{tol_about tol_mrca tol_subtree tol_induced_tree}.sort)
+      expect( Bark::Request::TreeOfLife::METHODS.keys.sort).to eq(%i{tol_about tol_mrca tol_subtree tol_induced_subtree}.sort)
     end
 
     context 'building a request URI' do

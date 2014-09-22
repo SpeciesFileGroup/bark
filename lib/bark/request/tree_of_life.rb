@@ -8,7 +8,7 @@ class Bark::Request::TreeOfLife < Bark::Request
       tol_about: %i{},
       tol_mrca: %i{node_ids ott_ids},
       tol_subtree: %i{node_id ott_id}, #  tree_id "is superflous and can be ignored"
-      tol_induced_tree: %i{node_ids ott_ids}, 
+      tol_induced_subtree: %i{node_ids ott_ids}, 
     }
 
     # node_ids or ott_ids are required in some cases, so this
@@ -45,11 +45,10 @@ class Bark::Request::TreeOfLife < Bark::Request
 
     def has_required_params?
       case @method
-      when :tol_mrca, :tol_induced_tree
-        # Both provided
-        return false if (@params[:node_ids] && @params[:node_ids].size > 0) && (@params[:ott_ids] && @params[:ott_ids].size > 0)
-        # Neither provided  
-        return false unless !@params[:node_ids].nil? || !@params[:ott_ids].nil?
+      when :tol_mrca, :tol_induced_subtree
+        return false if @params == {} 
+        # Both empty
+        return false if ((@params[:node_ids] == []) || @params[:node_ids].nil?) && ((@params[:ott_ids] == []) || @params[:ott_ids].nil?)
       when :tol_subtree
         # Both provided
         return false if !@params[:node_id].nil? && !@params[:ott_id].nil?
@@ -85,7 +84,7 @@ class Bark::Request::TreeOfLife < Bark::Request
       'subtree' 
     end 
 
-    def tol_induced_tree_url
+    def tol_induced_subtree_url
       'induced_subtree'
     end
 
