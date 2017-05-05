@@ -50,7 +50,7 @@ Parameter keys can be symbols or strings. Available methods [are listed here][10
 ### Request/Response style
 
 ```ruby
-    request = Bark::Request::Studies.new(method: :get_study, params: {study_id: '2113'})  # => #<Bark::Request::Studies:0x0000010310d340 @method=:get_study, @params={:study_id=>"2113"}, @uri=#<URI::HTTP:0x0000010310c508 URL:http://devapi.opentreeoflife.org/v2/study/2113>> 
+    request = Bark::Request::Studies.new(method: :get_study, params: {study_id: '2113'})  # => #<Bark::Request::Studies:0x0000010310d340 @method=:get_study, @params={:study_id=>"2113"}, @uri=#<URI::HTTP:0x0000010310c508 URL:https://devapi.opentreeoflife.org/v2/study/2113>> 
 ```
 
 Pre-check the validity of the requst (NOTE: mapping/checking is in development)

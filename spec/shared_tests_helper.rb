@@ -10,7 +10,7 @@ module SharedTestsHelper
   end
 
   # The location/ of the .json files
-  TEST_SOURCE_BASE = ' https://raw.githubusercontent.com/OpenTreeOfLife/shared-api-tests/master/'
+  TEST_SOURCE_BASE = 'https://raw.githubusercontent.com/OpenTreeOfLife/shared-api-tests/master/'
 
   # Base filenames to test with.
   TEST_FILES = %w{

@@ -6,7 +6,7 @@ raise "IMPORTANT:  gem requires ruby >= 2.1.0" unless recent_ruby
 require "bark/version"
 
 require "json"
-require "net/http"
+require "net/https"
 
 require_relative 'bark/request'
 require_relative 'bark/request/studies'

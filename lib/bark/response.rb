@@ -17,7 +17,7 @@ class Bark
         req = Net::HTTP::Post.new(request.uri, initheader = {'Content-Type' =>'application/json'})
       end 
       
-      res = Net::HTTP.start(request.uri.hostname, request.uri.port) do |http|
+      res = Net::HTTP.start(request.uri.hostname, request.uri.port, use_ssl: true) do |http|
         req.body = request.json_payload
         http.request(req)
       end

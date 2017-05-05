@@ -3,7 +3,7 @@ class Bark
 
     # Target API https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs
 
-    BASE_URL = 'http://devapi.opentreeoflife.org'
+    BASE_URL = 'https://devapi.opentreeoflife.org'
     attr_accessor :params, :method 
     attr_accessor :payload 
     attr_reader :uri
@@ -24,7 +24,6 @@ class Bark
       @method = opts[:method]
       @format = opts[:format]
       @params = opts[:params]
-
     end
 
     def uri

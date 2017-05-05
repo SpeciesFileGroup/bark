@@ -4,7 +4,7 @@ describe Bark::Response do
 
   subject { Bark::Response }
 
-  let(:uri) { URI('http://devapi.opentreeoflife.org/v2/taxonomy/about') }
+  let(:uri) { URI('https://devapi.opentreeoflife.org/v2/taxonomy/about') }
   let(:request) {
     r = instance_double('Bark::Request')
     allow(r).to receive(:uri).and_return( uri ) 

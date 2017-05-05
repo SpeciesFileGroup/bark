@@ -10,7 +10,7 @@ describe Bark::Request::Studies do
     end
 
     specify 'has an SEARCH_BASE' do
-      expect( Bark::Request::Studies::SEARCH_BASE).to eq('http://devapi.opentreeoflife.org/v2')
+      expect( Bark::Request::Studies::SEARCH_BASE).to eq('https://devapi.opentreeoflife.org/v2')
     end
 
     specify 'has an default FORMAT' do
@@ -24,25 +24,25 @@ describe Bark::Request::Studies do
     context 'building a request URI' do
       specify 'for find_studies'  do
         a = Bark::Request::Studies.new(method: :studies_find_studies)
-        expect(a.uri.to_s).to eq('http://devapi.opentreeoflife.org/v2/studies/find_studies')
+        expect(a.uri.to_s).to eq('https://devapi.opentreeoflife.org/v2/studies/find_studies')
       end
 
       specify 'for find_trees' do
         a = Bark::Request::Studies.new(method: :studies_find_trees)
-        expect(a.uri.to_s).to eq('http://devapi.opentreeoflife.org/v2/studies/find_trees')
+        expect(a.uri.to_s).to eq('https://devapi.opentreeoflife.org/v2/studies/find_trees')
       end
 
       specify 'for study' do
         id = 'pg_1144' 
         a = Bark::Request::Studies.new(method: :get_study, params: {study_id: id})
-        expect(a.uri.to_s).to eq("http://devapi.opentreeoflife.org/v2/study/#{id}")
+        expect(a.uri.to_s).to eq("https://devapi.opentreeoflife.org/v2/study/#{id}")
       end
 
       specify 'for study_tree' do
         id = 'pg_1144' 
         tree = 'tree2324'
         a = Bark::Request::Studies.new(method: :get_study_tree, params: {study_id: id, tree_id: tree })
-        expect(a.uri.to_s).to eq("http://devapi.opentreeoflife.org/v2/study/#{id}/tree/#{tree}")
+        expect(a.uri.to_s).to eq("https://devapi.opentreeoflife.org/v2/study/#{id}/tree/#{tree}")
       end
     end
 

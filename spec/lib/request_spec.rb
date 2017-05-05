@@ -12,7 +12,7 @@ describe Bark::Request do
 
   context 'constants include' do
     specify 'BASE_URL' do
-      expect( Bark::Request::BASE_URL).to eq('http://devapi.opentreeoflife.org')
+      expect( Bark::Request::BASE_URL).to eq('https://devapi.opentreeoflife.org')
     end
   end
 
