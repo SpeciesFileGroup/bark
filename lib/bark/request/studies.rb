@@ -45,7 +45,7 @@ class Bark::Request::Studies < Bark::Request
   end
 
   def valid?
-    raise "Method #{@method} not recognized." if @method && !Bark::Request::Studies::METHODS.keys.include?(@method)
+    raise(Bark::Error, "Method #{@method} not recognized.") if @method && !Bark::Request::Studies::METHODS.keys.include?(@method)
     !@method.nil? && params_are_supported? && has_required_params?
   end
 

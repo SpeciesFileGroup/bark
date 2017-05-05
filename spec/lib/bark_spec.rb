@@ -41,7 +41,7 @@ describe Bark do
   context 'convience wrapping methods' do
     context 'method_missing' do
       specify 'methods with indeterminable requests classes raise' do
-        expect {Bark.foo}.to raise_error
+        expect {Bark.foo}.to raise_error NoMethodError
       end
 
       specify 'methods with determinable request classes do not raise' do
@@ -49,7 +49,7 @@ describe Bark do
       end
 
       specify 'methods with params do not raise' do
-        expect { Bark.get_study(params: {'study_id' => 'px3454'})}.to_not raise_error
+        expect { Bark.get_study(params: {'study_id' => 'px3454'})}.to_not raise_error 
       end
 
       specify 'a GET example returns' do
