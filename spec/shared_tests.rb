@@ -40,7 +40,7 @@ def run_tests(request_class, tests)
             t.tests[k].each_with_index do |subtest, i|
               key = subtest[0]
               msg = subtest[1]
-              specify "#{k} #{key} (#{i})" do 
+              specify "#{k} #{key} (#{i})" do
                 expect(response.json[key]).to be_truthy
               end
             end
